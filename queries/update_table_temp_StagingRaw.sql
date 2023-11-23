@@ -1,0 +1,1 @@
+COPY {temp_table_name} FROM {file_path} CSV HEADER;
