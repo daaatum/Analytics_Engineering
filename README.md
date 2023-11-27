@@ -427,4 +427,4 @@ To run the project locally, perform the following steps:
 - run the infrastructure_initiation.py file only once as follows: <br>
      python infrastructure_initiation.py --ingestion_date "mm/dd/yyyy" 
 - run the flow.py file as follows: <br>
-     python flow.py --ingestion_date "mm/dd/yyyy"
+     python flow.py --ingestion_date "mm/dd/yyyy" --reload=True
