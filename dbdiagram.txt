@@ -1,0 +1,116 @@
+Table DimOperator {
+  id INTEGER [primary key]
+  surrogate_key INTEGER
+  oper_name VARCHAR
+  insertion_date DATETIME 
+}
+
+Table DimAgeGroup {
+  id integer [primary key]
+  age_range VARCHAR
+}
+
+Table DimGender {
+  id integer [primary key]
+  gender VARCHAR
+}
+
+Table DimSpending {
+  id INTEGER [primary key]
+  spending_range VARCHAR
+}
+
+Table DimLocation {
+  id INTEGER [primary key]
+  region VARCHAR
+  location_type VARCHAR
+}
+
+Table DimExperience {
+  id INTEGER [primary key]
+  usage_time_range VARCHAR
+}
+
+Table DimParticipant {
+  id INTEGER [primary key]
+  user_id VARCHAR
+  phone_num INTEGER
+  age INTEGER
+}
+
+Table DimOccupation {
+  id INTEGER [primary key]
+  participant_occupation VARCHAR
+}
+
+Table DimEducationLevel {
+  id INTEGER [primary key]
+  education_level VARCHAR
+}
+
+Table DimKidsUnder14 {
+  id INTEGER [primary key]
+  has_kids_under_14 VARCHAR
+}
+
+Table DimFamilyFinancialState {
+  id INTEGER [primary key]
+  fam_financial_state VARCHAR
+}
+
+Table DimDate {
+  id INTEGER [primary key]
+  date date
+  wave VARCHAR
+}
+
+Table DimQuestionNPS {
+  id INTEGER [primary key]
+  question_number VARCHAR
+  question_text VARCHAR
+}
+
+Table DimQuestionFilter {
+  id INTEGER [primary key]
+  filtering_question_number VARCHAR
+  filtering_question_text VARCHAR
+}
+
+Table Fact {
+id INTEGER [primary key]
+participant_id_nk VARCHAR
+operator_id INTEGER
+age_id INTEGER
+gender_id INTEGER
+spending_id INTEGER
+location_id INTEGER
+experience_id INTEGER
+participant_id INTEGER
+occupation_id INTEGER
+education_level_id INTEGER
+has_kids_under_14_id INTEGER
+family_financial_state_id INTEGER
+date_id INTEGER
+avg_monthly_spending INTEGER  
+is_the_payer VARCHAR 
+question_nps_id INTEGER
+score INTEGER
+weight INTEGER
+filtering_question_id INTEGER
+filtering_question_value BINARY
+}
+
+Ref: Fact.operator_id > DimOperator.id 
+Ref: Fact.age_id > DimAgeGroup.id
+Ref: Fact.gender_id > DimGender.id 
+Ref: Fact.spending_id > DimSpending.id
+Ref: Fact.location_id > DimLocation.id 
+Ref: Fact.experience_id > DimExperience.id
+Ref: Fact.participant_id > DimParticipant.id
+Ref: Fact.occupation_id > DimOccupation.id
+Ref: Fact.education_level_id > DimEducationLevel.id
+Ref: Fact.has_kids_under_14_id > DimKidsUnder14.id
+Ref: Fact.family_financial_state_id > DimFamilyFinancialState.id
+Ref: Fact.date_id > DimDate.id
+Ref: Fact.question_nps_id > DimQuestionNPS.id
+Ref: Fact.filtering_question_id > DimQuestionFilter.id

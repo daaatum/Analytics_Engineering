@@ -2,6 +2,7 @@ import os
 import config
 import argparse
 from datetime import datetime
+import psutil
 
 
 # load queries
@@ -35,6 +36,15 @@ parser.add_argument(
 )
 
 args = parser.parse_args()
+
+
+# check if a program is running
+def running(programs):
+    for program in programs:
+        if program in (p.name() for p in psutil.process_iter()):
+            print(f'{program} is running')
+        else:
+            print(f'{program} is not running')
 
 
 # question code versioning (not applied in the current version)
